@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://btq0cymy61xrc"]
+
+[ext_resource type="Script" uid="uid://doqk62in62t8j" path="res://Scenes/Prefabs/monster.gd" id="1_bamxl"]
+[ext_resource type="Texture2D" uid="uid://q1wpydfpdpqt" path="res://Body_Import/Run+Attack.png" id="2_bamxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dtpm"]
+atlas = ExtResource("2_bamxl")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn6gv"]
+atlas = ExtResource("2_bamxl")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x7pv"]
+atlas = ExtResource("2_bamxl")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5qc"]
+atlas = ExtResource("2_bamxl")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fna2u"]
+atlas = ExtResource("2_bamxl")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bd3x8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dtpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn6gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x7pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fna2u")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqbmj"]
+size = Vector2(15.3334, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dtpm"]
+size = Vector2(3, 11.3333)
+
+[node name="Slime" type="CharacterBody2D" groups=["Monster"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_bamxl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Monster"]]
+position = Vector2(1.66666, -3.33334)
+scale = Vector2(0.354167, 0.354167)
+sprite_frames = SubResource("SpriteFrames_bd3x8")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.173636
+
+[node name="body" type="CollisionShape2D" parent="." groups=["Monster"]]
+position = Vector2(-0.333343, 3.16667)
+shape = SubResource("RectangleShape2D_gqbmj")
+
+[node name="Head" type="Area2D" parent="." groups=["Monster"]]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" groups=["Monster"]]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(-1.19209e-07, -7)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4dtpm")
+
+[connection signal="body_entered" from="Head" to="." method="_on_area_2d_body_entered"]

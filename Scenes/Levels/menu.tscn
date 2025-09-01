@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbwnowgf11blb"]
+
+[ext_resource type="Script" uid="uid://btiha70hov0oo" path="res://Scenes/Levels/menu.gd" id="1_ju4x4"]
+[ext_resource type="Texture2D" uid="uid://cpjp6f485svqd" path="res://Background.png" id="2_ju4x4"]
+
+[sub_resource type="FontVariation" id="FontVariation_7pnm7"]
+
+[sub_resource type="FontVariation" id="FontVariation_lli10"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_ju4x4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = -7.0
+offset_right = 1287.0
+offset_bottom = 729.0
+texture = ExtResource("2_ju4x4")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(0.904816, 0.852244, 3.85046e-07, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -429.0
+offset_top = -248.0
+offset_right = 475.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_7pnm7")
+theme_override_font_sizes/font_size = 166
+text = "Main Menu"
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.670588)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -23.0
+offset_right = 133.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_lli10")
+theme_override_font_sizes/font_size = 56
+text = "Start"
+
+[node name="Exit" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.745098)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 113.0
+offset_right = 125.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "EXIT"
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
