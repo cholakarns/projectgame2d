@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://c56mh6q878bk3"]
+
+[ext_resource type="Script" uid="uid://cehjhr0evxkgu" path="res://Body_Import/Character.gd" id="1_dm0rk"]
+[ext_resource type="Texture2D" uid="uid://bxnu2y2soy0cs" path="res://Body_Import/Run.png" id="2_mc7vu"]
+
+[sub_resource type="Animation" id="Animation_nr8wp"]
+resource_name = "Idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_0h7mo"]
+length = 1.5
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_d2bti"]
+resource_name = "jump"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_ta5nu"]
+resource_name = "punch"
+
+[sub_resource type="Animation" id="Animation_x0ka3"]
+resource_name = "walk"
+length = 1.5
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nr8wp"]
+_data = {
+&"Idle": SubResource("Animation_nr8wp"),
+&"RESET": SubResource("Animation_0h7mo"),
+&"jump": SubResource("Animation_d2bti"),
+&"punch": SubResource("Animation_ta5nu"),
+&"walk": SubResource("Animation_x0ka3")
+}
+
+[node name="Character" type="Node2D"]
+position = Vector2(2, -2)
+script = ExtResource("1_dm0rk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nr8wp")
+}
+
+[node name="Run" type="Sprite2D" parent="."]
+position = Vector2(807.5, 39)
+scale = Vector2(1.2627, 1.70313)
+texture = ExtResource("2_mc7vu")
